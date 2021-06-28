@@ -1,5 +1,6 @@
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import { html, css} from 'lit';
+import { Connected, State, AuthSelectors } from "./connected";
+import {customElement, property} from 'lit/decorators.js';
 import { sharedStyles } from "./shared-styles";
 
 import './auth-status'
@@ -15,36 +16,27 @@ declare global {
 }
 
 @customElement('app-shell')
-export class AppShellElement extends LitElement {
+export class AppShellElement extends Connected {
+  @property({ type: Boolean }) authenticated: boolean;
+
+  mapState(state: State) {
+    return {
+      authenticated: AuthSelectors.authenticated(state)
+    };
+  }
 
 
   render() {
-    return html`
-    <auth-status></auth-status>
-    <view-interest-c></view-interest-c>
-    <view-interest-rd></view-interest-rd>
-    <view-interest-u></view-interest-u>
-    <hr>
-    `
+    return  this.authenticated
+    ? html`<view-interest-rd></view-interest-rd>` :
+      html`<a href="/signin">Sign In, first</a>`
   }
 
   static get styles() {
     return [sharedStyles, 
     css`
-      app-view {
-        box-sizing: border-box;
-        padding: var(--min-padding);
-      }
-
-      auth-status {
-        height: 56px;
-        background-color: #f8f8f8;
-      }
-
-      @media (min-width: 600px) {
-        auth-status {
-          height: 64px;
-        }
+      :host {
+        padding: 2em;
       }
     `
     ]
