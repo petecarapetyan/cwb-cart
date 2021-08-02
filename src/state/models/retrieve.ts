@@ -49,10 +49,12 @@ export default createModel({
                   let changes = snapshot.docChanges();
                   changes.forEach(change => {
                     if (change.type == "added") {
+                      const ms = parseInt(change.doc.data()["datetime"])
+                      const datetime = new Date(ms);
                       const dcmnt: InterestDcmnt = {
                         id: change.doc.id,
                         page: change.doc.data()["page"],
-                        datetime: change.doc.data()["datetime"],
+                        datetime: datetime.toISOString(),
                         removedDatetime: change.doc.data()["removedDatetime"],
                         username: change.doc.data()["username"],
                       };

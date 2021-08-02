@@ -53,6 +53,7 @@ export default createModel({
 
     async readInShoppingCart() {
       const dispatch = store.getDispatch()
+      const uid = store.getState().auth.user?.uid
       for (var i = 0; i < localStorage.length; i++){
         const key = localStorage.key(i)
         if(key && key.startsWith("page")){
@@ -62,7 +63,7 @@ export default createModel({
             const data:InterestDcmnt = {
               page,
               datetime,
-              username:"user.displayName()",
+              username:`${uid}`,
               removedDatetime: ""
             };
             console.log("DATA", data)
