@@ -28,7 +28,13 @@ export class AppShellElement extends Connected {
 
   render() {
     return  this.authenticated
-    ? html`<view-interest-rd></view-interest-rd>` :
+    ? html`
+    <p>This is very crude cart functionality to demonstrate communication with both localstorage and the remote firestore database.</p>
+    <p>If you implemented this module you would - no doubt - rewrite it to suit your own shopping cart needs</p>
+    <hr/>
+    <p>Click the "Update Cart" button to bring any products from localstorage into the cart</p>
+    
+    <view-interest-rd></view-interest-rd>` :
       html`<a href="/signin">Sign In, first</a>`
   }
 

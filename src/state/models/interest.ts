@@ -63,7 +63,7 @@ export default createModel({
               page,
               datetime,
               username:"user.displayName()",
-              removedDatetime: "1234"
+              removedDatetime: ""
             };
             console.log("DATA", data)
             dispatch.interest.create(data)
@@ -84,7 +84,6 @@ export default createModel({
         })
         .then(function (docRef) {
           console.log("Document written with ID: ", docRef.id);
-          window.location.replace("/interestRD")
         })
         .catch(function (error) {
           console.error("Error adding document: ", error);

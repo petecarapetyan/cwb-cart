@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "promote": "rollup -c && cp docs/cwbCart* ../cwb-mpa-test-site/docs/_assets/",
-    "build": "rollup -c",
+    "build": "rollup -c && node server.js",
     "start": "node server.js"
   },
   "keywords": [
